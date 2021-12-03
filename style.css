@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    --border-size: 5px;
+    --background-color: #ddd;
+    --accent-color: #0af;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    margin: 1rem;
+}
+
+.btn {
+    position: relative;
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 0.5em 1em;
+    color: #222;
+}
+
+.btn.border-pop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: var(--border-size) solid var(--background-color);
+    transition: inset 200ms ease-in;
+}
+
+.btn.border-pop:hover::before {
+    inset: calc(var(--border-size) * -2);
+}
+
+.btn.background-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 400ms ease-out;
+}
+
+.btn.background-slide:hover::before {
+    transform: scale(1);
+}
+
+.btn.background-slide:hover {
+    color: white;
+}
+
+.btn.background-slide {
+    z-index: 1;
+    transition: color 400ms ease-out;
+}
+
+.btn.border-underline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--border-size);
+    background-color: var(--accent-color);
+    transform: scale(0);
+    transition: transform 300ms ease-in-out;
+}
+
+.btn.border-underline:hover::before {
+    transform: scale(1);
+}
